@@ -24,5 +24,4 @@ class testLigue
 		assertEquals(employe, ligue.getEmployes().first());
 	}
 	
-	
 }
