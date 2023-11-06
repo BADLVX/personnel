@@ -21,7 +21,7 @@ class testEmploye {
 		
 	}
 	
-	/*@Test
+	@Test
 	void NomEmploye() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
@@ -44,7 +44,6 @@ class testEmploye {
 		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty");
 		assertEquals("g.bouchard@gmail.com", employe.getMail());
 	}
-	*/
 }
 
 
