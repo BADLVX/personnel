@@ -165,6 +165,25 @@ public class Employe implements Serializable, Comparable<Employe>
 			throw new ImpossibleDeSupprimerRoot();
 	}
 	
+	//Getter de DateArrivee
+	public LocalDate getDateArrivee() {
+        return dateArrivee;
+    }
+	//Setter de DateArrivee
+    public void setDateArrivee(LocalDate dateArrivee) {
+        this.dateArrivee = dateArrivee;
+    }
+    
+	//Getter de DateDepart
+    public LocalDate getDateDepart() {
+        return dateDepart;
+    }
+    
+    //Setter de DateDepart
+    public void setDateDepart(LocalDate dateDepart) {
+        this.dateDepart = dateDepart;
+    }
+    
 	//Tentative de creation de la date de l'arrivee d'un employée
 		public LocalDate dateArrivee(Employe employe)
 		{	
