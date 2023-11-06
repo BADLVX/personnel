@@ -13,10 +13,15 @@ class testGestionPersonnel
 	void getLigue() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
-		GestionPersonnel gestionPersonnel = new GestionPersonnel();
-		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty");
-		ligue.setAdministrateur(employe);
-		assertEquals("Bouchard", ligue.getAdministrateur());
+		Employe employe = ligue.addEmploye("root", "", "g.bouchard@gmail.com", "azerty");
+		assertEquals("root", ligue.getAdministrateur());
+	}
+	
+	@Test
+	void addLigue() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("Flechettes");
+		assertEquals("Flechettes", ligue.getNom());
 	}
 
 	@Test
