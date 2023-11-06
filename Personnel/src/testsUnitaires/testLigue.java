@@ -24,4 +24,25 @@ class testLigue
 		assertEquals(employe, ligue.getEmployes().first());
 	}
 	
+	void getNom() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
+		assertEquals("Fléchettes", ligue.getNom());
+	}
+	
+	void setNom() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
+		ligue.setNom("Billard");
+		assertEquals("Billard", ligue.getNom());
+	}
+	
+	void getAdministrateur() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
+		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty"); 
+		ligue.SetAdministrateur(employe);
+		assertEquals("root", employe.getNom());
+	}
+	
 }
