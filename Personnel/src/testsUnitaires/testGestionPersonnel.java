@@ -10,10 +10,13 @@ class testGestionPersonnel
 	GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	
 	@Test
-	void createLigue() throws SauvegardeImpossible
+	void getLigue() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
-		assertEquals("Fléchettes", ligue.getNom());
+		GestionPersonnel gestionPersonnel = new GestionPersonnel();
+		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty");
+		ligue.setAdministrateur(employe);
+		assertEquals("Bouchard", ligue.getAdministrateur());
 	}
 
 	@Test
