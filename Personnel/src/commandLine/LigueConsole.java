@@ -104,6 +104,8 @@ public class LigueConsole
 		);
 	}
 	
+	//Commentaire de nico : Changer de place Supprimer et modifier et ajouter une option : selectionner un employer.
+	//Ensuite mettre Supprimer et modifier apres avoir selectionner l'employé.
 	private Menu gererEmployes(Ligue ligue)
 	{
 		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
