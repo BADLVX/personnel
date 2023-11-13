@@ -123,8 +123,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	 */
 	
 	public boolean checkPassword(String password)
-	{
+	{	
 		return this.password.equals(password);
+		
+		
 	}
 
 	/**
@@ -170,14 +172,16 @@ public class Employe implements Serializable, Comparable<Employe>
 	public LocalDate getDateArrivee() {
         return dateArrivee;
     }
-	//Setter de DateArrivee
-    public void setDateArrivee(LocalDate dateArrivee) {
-        this.dateArrivee = dateArrivee;
-    }
-    
 	//Getter de DateDepart
     public LocalDate getDateDepart() {
         return dateDepart;
+    }
+    
+	//Setter de DateArrivee
+    public void setDateArrivee(LocalDate dateArrivee) {
+    	// throw new RuntimeException("Invalid argument values");
+    	//throw new IllegalArgumentException("Input date must be positive value:") ;
+        this.dateArrivee = dateArrivee;
     }
     
     //Setter de DateDepart
@@ -185,11 +189,14 @@ public class Employe implements Serializable, Comparable<Employe>
         this.dateDepart = dateDepart;
     }
     
-	//Tentative de creation de la date de l'arrivee d'un employée
+    
+	
+  
+	/*Tentative de creation de la date de l'arrivee d'un employée
 		public LocalDate dateArrivee(Employe employe)
 		{	
 			return LocalDate.now();
-		}
+		}*/
 
 	@Override
 	public int compareTo(Employe autre)
