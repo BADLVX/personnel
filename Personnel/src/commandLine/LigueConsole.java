@@ -71,7 +71,7 @@ public class LigueConsole
 		Menu menu = new Menu("Editer " + ligue.getNom());
 		menu.add(afficher(ligue));
 		menu.add(gererEmployes(ligue));
-		//menu.add(changerAdministrateur(ligue));
+		menu.add(changerAdministrateur(ligue));
 		menu.add(changerNom(ligue));
 		menu.add(supprimer(ligue));
 		menu.addBack("q");
@@ -92,6 +92,14 @@ public class LigueConsole
 				);
 	}
 	
+	////ajout de SelectionnerEmlpoyee
+	private List<Employe> selectionnerEmploye(final Ligue ligue)
+	{
+		return new List<>("Sélectionner un employé", "s", 
+				() -> new ArrayList<>(ligue.getEmployes()),
+				employeConsole.editerEmploye()
+				);
+	}
 	private Option ajouterEmploye(final Ligue ligue)
 	{
 		return new Option("ajouter un employé", "a",
@@ -111,8 +119,13 @@ public class LigueConsole
 		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
 		menu.add(afficherEmployes(ligue));
 		menu.add(ajouterEmploye(ligue));
-		menu.add(modifierEmploye(ligue));
-		menu.add(supprimerEmploye(ligue));
+		
+		//ajout
+		menu.add(selectionnerEmploye(ligue));
+		
+		//retrait
+		/*menu.add(modifierEmploye(ligue));
+		menu.add(supprimerEmploye(ligue));*/
 		menu.addBack("q");
 		return menu;
 	}
@@ -125,9 +138,13 @@ public class LigueConsole
 				);
 	}
 	
+	//modiff
 	private List<Employe> changerAdministrateur(final Ligue ligue)
 	{
-		return null;
+		return new List<>("Changer l'administrateur", "c", 
+				() -> new ArrayList<>(ligue.getEmployes()),
+				(index, element) -> {ligue.setAdministrateur(element);}
+				);
 	}		
 
 	private List<Employe> modifierEmploye(final Ligue ligue)

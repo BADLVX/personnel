@@ -6,6 +6,7 @@ import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.Employe;
+import personnel.Ligue;
 
 public class EmployeConsole 
 {
@@ -27,8 +28,17 @@ public class EmployeConsole
 			menu.add(changerPrenom(employe));
 			menu.add(changerMail(employe));
 			menu.add(changerPassword(employe));
+			
+			//ajout 
+			menu.add(supprimerEmploye(employe));
 			menu.addBack("q");
 			return menu;
+	}
+	
+	//ajout 
+	private Option supprimerEmploye(Employe employe)
+	{
+		return new Option("Supprimer", "d", () -> {employe.remove();});
 	}
 
 	private Option changerNom(final Employe employe)
