@@ -123,7 +123,7 @@ public class LigueConsole
 		//ajout
 		menu.add(selectionnerEmploye(ligue));
 		
-		//retrait
+		//retrait car pas avant séléction d'un employé
 		/*menu.add(modifierEmploye(ligue));
 		menu.add(supprimerEmploye(ligue));*/
 		menu.addBack("q");

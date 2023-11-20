@@ -24,15 +24,27 @@ public class EmployeConsole
 	{
 			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
 			menu.add(afficher(employe));
-			menu.add(changerNom(employe));
+			/*menu.add(changerNom(employe));
 			menu.add(changerPrenom(employe));
 			menu.add(changerMail(employe));
-			menu.add(changerPassword(employe));
-			
-			//ajout 
+			menu.add(changerPassword(employe)); */
+		
+			//ajout des options pour modifier et supprimer un employé
+			menu.add(modifierEmploye(employe));
 			menu.add(supprimerEmploye(employe));
 			menu.addBack("q");
 			return menu;
+	}
+	
+	//ajout d'un menu pour modifier les informations d'un employé
+	Option modifierEmploye(Employe employe) {
+		Menu menu = new Menu("Modifier l'employé " + employe.getNom(), "m");
+		menu.add(changerNom(employe));
+		menu.add(changerPrenom(employe));
+		menu.add(changerMail(employe));
+		menu.add(changerPassword(employe));
+		menu.addBack("q");
+		return menu;
 	}
 	
 	//ajout 
