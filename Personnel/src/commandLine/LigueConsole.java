@@ -138,7 +138,7 @@ public class LigueConsole
 				);
 	}
 	
-	//modiff
+	//Modification de la methode changerAdministrateur pour qu'elle change l'administrateur d'une ligue
 	private List<Employe> changerAdministrateur(final Ligue ligue)
 	{
 		return new List<>("Changer l'administrateur", "c", 
