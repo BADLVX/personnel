@@ -177,16 +177,28 @@ public class Employe implements Serializable, Comparable<Employe>
         return dateDepart;
     }
     
-	//Setter de DateArrivee
-    public void setDateArrivee(LocalDate dateArrivee) {
+	//Setter de DateArrivee avec la méthode of() qui instancie l'objet LocalDate au format 'aaaa-mm-jj'
+    public void setDateArrivee(int jour, int mois, int annee /*LocalDate dateArrivee*/) {
     	// throw new RuntimeException("Invalid argument values");
     	//throw new IllegalArgumentException("Input date must be positive value:") ;
-        this.dateArrivee = dateArrivee;
+    	if( (annee>0) && (mois>0) && (jour>0) && (mois<=12) && (jour <= 31) ){
+    		this.dateArrivee = LocalDate.of(annee, mois, jour);
+    	}
+    	else {
+    		throw new RuntimeException("Invalid argument values");
+    	}
+        
     }
     
-    //Setter de DateDepart
-    public void setDateDepart(LocalDate dateDepart) {
-        this.dateDepart = dateDepart;
+    //Setter de DateDepart avec la méthode of() qui instancie l'objet LocalDate au format 'aaaa-mm-jj'
+    public void setDateDepart(int jour, int mois, int annee/*LocalDate dateDepart*/) {
+        //this.dateDepart = dateDepart;
+    	if( (annee>0) && (mois>0) && (jour>0) && (mois<=12) && (jour <= 31) ){
+    		this.dateDepart = LocalDate.of(annee, mois, jour);
+    	}
+    	else {
+    		throw new RuntimeException("Invalid argument values");
+    	}
     }
     
     
