@@ -3,6 +3,10 @@ package personnel;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import testsUnitaires.ExceptionArrivee;
+import testsUnitaires.ExceptionDepart;
+
+
 /**
  * Employé d'une ligue hébergée par la M2L. Certains peuvent 
  * être administrateurs des employés de leur ligue.
@@ -177,28 +181,23 @@ public class Employe implements Serializable, Comparable<Employe>
         return dateDepart;
     }
     
-	//Setter de DateArrivee avec la méthode of() qui instancie l'objet LocalDate au format 'aaaa-mm-jj'
-    public void setDateArrivee(int jour, int mois, int annee /*LocalDate dateArrivee*/) {
-    	// throw new RuntimeException("Invalid argument values");
-    	//throw new IllegalArgumentException("Input date must be positive value:") ;
-    	if( (annee>0) && (mois>0) && (jour>0) && (mois<=12) && (jour <= 31) ){
-    		this.dateArrivee = LocalDate.of(annee, mois, jour);
-    	}
-    	else {
-    		throw new RuntimeException("Invalid argument values");
-    	}
-        
+	//Setter pour datearrivee
+    public void setDateArrivee(LocalDate dateArrivee) throws ExceptionArrivee{
+    		if(dateArrivee.isBefore(dateDepart))
+    		{
+    			throw new ExceptionArrivee();
+    		}
+    		this.dateArrivee = dateArrivee;  
+    		
     }
     
-    //Setter de DateDepart avec la méthode of() qui instancie l'objet LocalDate au format 'aaaa-mm-jj'
-    public void setDateDepart(int jour, int mois, int annee/*LocalDate dateDepart*/) {
-        //this.dateDepart = dateDepart;
-    	if( (annee>0) && (mois>0) && (jour>0) && (mois<=12) && (jour <= 31) ){
-    		this.dateDepart = LocalDate.of(annee, mois, jour);
-    	}
-    	else {
-    		throw new RuntimeException("Invalid argument values");
-    	}
+    //Setter pour datedepart
+    public void setDateDepart(LocalDate dateDepart) throws ExceptionDepart {
+    	if(dateDepart.isAfter(dateArrivee))
+		{
+			throw new ExceptionDepart();
+		}
+        this.dateDepart = dateDepart;
     }
     
     
