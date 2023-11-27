@@ -202,12 +202,6 @@ public class Employe implements Serializable, Comparable<Employe>
     
     
 	
-  
-	/*Tentative de creation de la date de l'arrivee d'un employée
-		public LocalDate dateArrivee(Employe employe)
-		{	
-			return LocalDate.now();
-		}*/
 
 	@Override
 	public int compareTo(Employe autre)
