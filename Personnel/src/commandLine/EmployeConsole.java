@@ -1,11 +1,15 @@
 package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
+import java.time.LocalDate;
+
 
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.Employe;
+import personnel.ExceptionArrivee;
+import personnel.ExceptionDepart;
 import personnel.Ligue;
 
 public class EmployeConsole 
@@ -31,6 +35,7 @@ public class EmployeConsole
 		
 			//ajout des options pour modifier et supprimer un employé
 			menu.add(modifierEmploye(employe));
+			menu.add(GererLesDates(employe));
 			menu.add(supprimerEmploye(employe));
 			menu.addBack("q");
 			return menu;
@@ -75,5 +80,42 @@ public class EmployeConsole
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
 	}
 	
+	Option GererLesDates(Employe employe)
+	{
+		Menu menu = new Menu ("Gérer les dates de l'employé " + employe.getNom(), "g" );
+		menu.add(AfficherDates(employe));
+		menu.add(ChangerDateArrivee(employe));
+		menu.add(ChangerDateDepart(employe));
+		menu.addBack("q");
+		return menu;
+	}
+	
+	private Option AfficherDates(Employe employe) {
+		return new Option("Afficher les dates de l'employé " + employe.getNom(), "a", ()-> {System.out.println("La date d'arrivée est : " + employe.getDateArrivee() + "\n" + "La Date de départ(null si toujours employé) est : " + employe.getDateDepart());});
+	}
+	
+	private Option ChangerDateArrivee(Employe employe) {
+		
+			return new Option("Changer la date d'arrivée :", "r", () -> {
+				try {
+				employe.setDateArrivee(LocalDate.parse( getString("Entrez la date de départ au format aaaa-mm-jj:") ) );
+				} catch (ExceptionArrivee e) {
+					System.out.println(e);
+				} });
+
+
+	}
+	
+	private Option ChangerDateDepart(Employe employe) {
+
+		return new Option("Changer la date de départ :", "d", () -> {
+			try {
+			employe.setDateDepart(LocalDate.parse( getString("Entrez la date d'arrivée au format aaaa-mm-jj:") ) );
+			}
+			catch (ExceptionDepart e) {
+				System.out.println(e);
+			}
+		});
+	}
 
 }

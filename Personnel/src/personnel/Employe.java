@@ -3,9 +3,6 @@ package personnel;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import testsUnitaires.ExceptionArrivee;
-import testsUnitaires.ExceptionDepart;
-
 
 /**
  * Employé d'une ligue hébergée par la M2L. Certains peuvent 
@@ -183,7 +180,7 @@ public class Employe implements Serializable, Comparable<Employe>
     
 	//Setter pour datearrivee
     public void setDateArrivee(LocalDate dateArrivee) throws ExceptionArrivee{
-    		if(dateArrivee.isBefore(dateDepart))
+    		if( (dateDepart != null) && (dateArrivee.isBefore(dateDepart) ) )
     		{
     			throw new ExceptionArrivee();
     		}
@@ -193,7 +190,7 @@ public class Employe implements Serializable, Comparable<Employe>
     
     //Setter pour datedepart
     public void setDateDepart(LocalDate dateDepart) throws ExceptionDepart {
-    	if(dateDepart.isAfter(dateArrivee))
+    	if( (dateArrivee != null) && (dateDepart.isAfter(dateArrivee) ) )
 		{
 			throw new ExceptionDepart();
 		}

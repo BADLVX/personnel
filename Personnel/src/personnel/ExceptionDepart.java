@@ -1,4 +1,4 @@
-package testsUnitaires;
+package personnel;
 
 public class ExceptionDepart extends Exception{
      	public ExceptionDepart()
@@ -8,7 +8,7 @@ public class ExceptionDepart extends Exception{
      	@Override
      	public String toString()
         {
-          return "La date d'arrivee ne peut pas etre apres la date de depart ";
+          return "La date de départ ne peut pas etre avant la date d'arrivée ";
         }
 	
 
