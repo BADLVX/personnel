@@ -41,6 +41,7 @@ public class JDBC implements Passerelle
 			ResultSet ligues = instruction.executeQuery(requete);
 			while (ligues.next())
 				gestionPersonnel.addLigue(ligues.getInt(1), ligues.getString(2));
+			
 		}
 		catch (SQLException e)
 		{
@@ -67,7 +68,9 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(e);
 		}
 	}
-	
+	// Modifier l'employé :Nicolas
+	// Supprimer Ligue, Supprimer Employé : Hugo
+	// Ajouter un employé, Modifier Ligue : Alex
 	@Override
 	public int insert(Ligue ligue) throws SauvegardeImpossible 
 	{
