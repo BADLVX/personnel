@@ -10,7 +10,7 @@ CREATE TABLE Utilisateur(
     Mdp VARCHAR (50),
     Date_Arrivee DATE,
     Date_Depart DATE,
-    PRIMARY KEY (User_Id),
+    PRIMARY KEY (User_Id)
     /* FOREIGN KEY REFERENCES Ligue (Id_Ligue) */
 )ENGINE = INNODB;
 
