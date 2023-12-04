@@ -1,6 +1,7 @@
 package jdbc;
 
 public class Credentials
+
 {
 	private static String driver = "mysql";
 	private static String driverClassName = "com.mysql.cj.jdbc.Driver";
