@@ -99,7 +99,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Retourne le mail de l'employé.
 	 * @return le mail de l'employé.
 	 */
-	
+	public String getPassword() {
+		return password;
+	}
 	public String getMail()
 	{
 		return mail;

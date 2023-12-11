@@ -71,6 +71,7 @@ public class JDBC implements Passerelle
 	// Modifier l'employé :Nicolas
 	// Supprimer Ligue, Supprimer Employé : Hugo
 	// Ajouter un employé, Modifier Ligue : Alex
+	// Changer le type de l'ID ligue et employé pour un int auto incrémenté
 	@Override
 	public int insert(Ligue ligue) throws SauvegardeImpossible 
 	{
@@ -90,4 +91,31 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
+	
+	@Override
+	public int insert(Employe employe) throws SauvegardeImpossible 
+	{
+		try 
+		{
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("insert into employe (Nom, Prenom, Mdp, Date_Arrivee, Date_Depart) values(?)", Statement.RETURN_GENERATED_KEYS);
+			instruction.setString(1, employe.getNom());	
+			instruction.setString(2, employe.getPrenom());
+			instruction.setString(3, employe.getPassword());
+			instruction.setString(4, employe.getDateArrivee().toString());
+			instruction.setString(5, employe.getDateDepart().toString());
+			instruction.executeUpdate();
+			ResultSet id = instruction.getGeneratedKeys();
+			id.next();
+			return id.getInt(1);
+		} 
+		catch (SQLException exception) 
+		{
+			exception.printStackTrace();
+			throw new SauvegardeImpossible(exception);
+		}		
+	}
+	
+	
 }
+	
