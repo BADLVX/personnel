@@ -115,6 +115,8 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}
 	}	
+	
+	@Override
 	public int update(Employe employe) throws SauvegardeImpossible 
 	{
 		try 
