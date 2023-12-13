@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.sql.Date;
 
 import personnel.*;
 
@@ -78,7 +80,7 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("insert into ligue (nom) values(?)", Statement.RETURN_GENERATED_KEYS);
+			instruction = connection.prepareStatement("insert into ligue (Nom_Ligue) values(?)", Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1, ligue.getNom());		
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
@@ -93,17 +95,19 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-
 	public int insert(Employe employe) throws SauvegardeImpossible 
 	{
 		try {
+			Date dateArriveeSQL = Date.valueOf(employe.getDateArrivee());
+			Date dateDepartSQL = Date.valueOf(employe.getDateDepart());
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("insert into employe (Nom, Prenom, Mdp, Date_Arrivee, Date_Depart) values(?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-			instruction.setString(1, employe.getNom());
-			instruction.setString(2, employe.getPrenom());
-			instruction.setString(3, employe.getPassword());
-			instruction.setString(4, employe.getDateArrivee().toString());
-			instruction.setString(5, employe.getDateDepart().toString());
+			instruction = connection.prepareStatement("insert into employe (Id_Ligue, Nom, Prenom, Mdp, Date_Arrivee, Date_Depart) values(?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			instruction.setInt(1, employe.getLigue().getID());
+			instruction.setString(2, employe.getNom());
+			instruction.setString(3, employe.getPrenom());
+			instruction.setString(4, employe.getPassword());
+			instruction.setDate(5, dateArriveeSQL);
+			instruction.setDate(6, dateDepartSQL);
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();
