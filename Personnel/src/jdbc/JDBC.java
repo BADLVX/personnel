@@ -93,7 +93,24 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
+
 	public int insert(Employe employe) throws SauvegardeImpossible 
+	{
+		try {
+			PreparedStatement instruction;
+		instruction = connection.prepareStatement("update utilisateur set User_Id = ?, Id_Ligue = ?, Nom = ?, Prenom = ?, Mdp = ?, Date_Arrivee = ?, Date_Depart = ?  where User_Id = ? ", Statement.RETURN_GENERATED_KEYS);
+		instruction.setString(1, employe.getNom());
+		instruction.setString(2, employe.getPrenom());
+		instruction.setString(3, employe.getMdp());
+		instruction.setString(4, employe.getDateArrivee().toString());
+		instruction.setString(5, employe.getDateDepart().toString());
+		instruction.executeUpdate();
+		ResultSet id = instruction.getGeneratedKeys();
+		id.next();
+		return id.getInt(1);
+	 } 
+	}	
+	public int update(Employe employe) throws SauvegardeImpossible 
 	{
 		try 
 		{
@@ -102,6 +119,10 @@ public class JDBC implements Passerelle
 			instruction.setString(1, employe.getNom());	
 			instruction.setString(2, employe.getPrenom());
 			instruction.setString(3, employe.getPassword());
+			instruction = connection.prepareStatement("update utilisateur set User_Id = ?, Id_Ligue = ?, Nom = ?, Prenom = ?, Mdp = ?, Date_Arrivee = ?, Date_Depart = ?  where User_Id = ? ", Statement.RETURN_GENERATED_KEYS);
+			instruction.setString(1, employe.getNom());
+			instruction.setString(2, employe.getPrenom());
+			instruction.setString(3, employe.getMdp());
 			instruction.setString(4, employe.getDateArrivee().toString());
 			instruction.setString(5, employe.getDateDepart().toString());
 			instruction.executeUpdate();
@@ -115,7 +136,5 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
-	
-	
 }
 	
