@@ -98,18 +98,24 @@ public class JDBC implements Passerelle
 	public int insert(Employe employe) throws SauvegardeImpossible 
 	{
 		try {
+			System.out.println("HELLLO JHE SUIS LLAAA");
 			Date dateArriveeSQL = Date.valueOf(employe.getDateArrivee());
 			Date dateDepartSQL = Date.valueOf(employe.getDateDepart());
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("insert into employe (Id_Ligue, Nom, Prenom, Mdp, Date_Arrivee, Date_Depart) values(?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			System.out.println("HELLLO JHE SUIS LLAAA");
+			instruction = connection.prepareStatement("insert into employe (Id_Ligue, Nom, Prenom, Mdp, Date_Arrivee, Date_Depart, Mail) values(?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			System.out.println("HELLLO JHE SUIS LLAAA");
 			instruction.setInt(1, employe.getLigue().getID());
 			instruction.setString(2, employe.getNom());
 			instruction.setString(3, employe.getPrenom());
 			instruction.setString(4, employe.getPassword());
 			instruction.setDate(5, dateArriveeSQL);
 			instruction.setDate(6, dateDepartSQL);
+			instruction.setString(7, employe.getMail());
 			instruction.executeUpdate();
+			System.out.println("HELLLO JHE SUIS LLAAA");
 			ResultSet id = instruction.getGeneratedKeys();
+			System.out.println("HELLLO JHE SUIS LLAAA");
 			id.next();
 			return id.getInt(1);
 		 }
