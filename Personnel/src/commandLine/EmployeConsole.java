@@ -3,7 +3,7 @@ package commandLine;
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 import java.time.LocalDate;
 	
-
+import personnel.SauvegardeImpossible;
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
@@ -11,6 +11,7 @@ import personnel.Employe;
 import personnel.ExceptionArrivee;
 import personnel.ExceptionDepart;
 import personnel.Ligue;
+import personnel.GestionPersonnel;
 
 public class EmployeConsole 
 {
@@ -48,6 +49,7 @@ public class EmployeConsole
 		menu.add(changerPrenom(employe));
 		menu.add(changerMail(employe));
 		menu.add(changerPassword(employe));
+	//	menu.add(enregistrerModifications(employe));
 		menu.addBack("q");
 		return menu;
 	}
@@ -79,6 +81,10 @@ public class EmployeConsole
 	{
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
 	}
+	
+	//private Option enregistrerModifications(final Employe employe) throws SauvegardeImpossible {
+	//	return new Option("Enregistrer les modifications effectuées", "e", () -> {employe.getGestionPersonnel().update(employe);} );
+	//}
 	
 	Option GererLesDates(Employe employe)
 	{
