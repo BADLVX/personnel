@@ -26,9 +26,6 @@ public class GestionPersonnel implements Serializable
 	
 	private static Passerelle passerelle = TYPE_PASSERELLE == JDBC ? new jdbc.JDBC() : new serialisation.Serialization();	
 	
-	
-	
-	
 	/**
 	 * Retourne l'unique instance de cette classe.
 	 * Crée cet objet s'il n'existe déjà.
@@ -112,6 +109,12 @@ public class GestionPersonnel implements Serializable
 	{
 		return passerelle.insert(employe);
 	}
+	
+	int update(Employe employe) throws SauvegardeImpossible
+	{
+		return passerelle.insert(employe);
+	}
+	
 	
 	/**
 	 * Retourne le root (super-utilisateur).

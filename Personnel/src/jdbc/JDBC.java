@@ -98,24 +98,23 @@ public class JDBC implements Passerelle
 	public int insert(Employe employe) throws SauvegardeImpossible 
 	{
 		try {
-			System.out.println("HELLLO JHE SUIS LLAAA");
+			System.out.println("HELLLO STP FONCTIONNE");
 			Date dateArriveeSQL = Date.valueOf(employe.getDateArrivee());
 			Date dateDepartSQL = Date.valueOf(employe.getDateDepart());
 			PreparedStatement instruction;
-			System.out.println("HELLLO JHE SUIS LLAAA");
-			instruction = connection.prepareStatement("insert into employe (Id_Ligue, Nom, Prenom, Mdp, Date_Arrivee, Date_Depart, Mail) values(?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-			System.out.println("HELLLO JHE SUIS LLAAA");
-			instruction.setInt(1, employe.getLigue().getID());
-			instruction.setString(2, employe.getNom());
-			instruction.setString(3, employe.getPrenom());
-			instruction.setString(4, employe.getPassword());
-			instruction.setDate(5, dateArriveeSQL);
-			instruction.setDate(6, dateDepartSQL);
-			instruction.setString(7, employe.getMail());
+			System.out.println("HELLLO STP FONCTIONNE");
+			instruction = connection.prepareStatement("insert into employe (Nom, Prenom, Mdp, Date_Arrivee, Date_Depart, Mail) values(?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			System.out.println("HELLLO STP FONCTIONNE");
+			instruction.setString(1, employe.getNom());
+			instruction.setString(2, employe.getPrenom());
+			instruction.setString(3, employe.getPassword());
+			instruction.setDate(4, dateArriveeSQL);
+			instruction.setDate(5, dateDepartSQL);
+			instruction.setString(6, employe.getMail());
 			instruction.executeUpdate();
-			System.out.println("HELLLO JHE SUIS LLAAA");
+			System.out.println("HELLLO STP FONCTIONNE");
 			ResultSet id = instruction.getGeneratedKeys();
-			System.out.println("HELLLO JHE SUIS LLAAA");
+			System.out.println("HELLLO STP FONCTIONNE");
 			id.next();
 			return id.getInt(1);
 		 }
@@ -132,7 +131,7 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("update utilisateur set Nom = ?, Prenom = ?, Mdp = ?, Date_Arrivee = ?, Date_Depart = ?  where User_Id = ? ", Statement.RETURN_GENERATED_KEYS);
+			instruction = connection.prepareStatement("update utilisateur set Nom = ?, Prenom = ?, Mdp = ?, Date_Arrivee = ?, Date_Depart = ?, Mail = ?  where User_Id = ? ", Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1, employe.getNom()); 
 			instruction.setString(2, employe.getPrenom());
 			instruction.setString(3, employe.getPassword());

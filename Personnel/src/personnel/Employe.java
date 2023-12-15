@@ -18,8 +18,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	private String nom, prenom, password, mail;
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
-	private LocalDate dateArrivee = null;
-	private LocalDate dateDepart = null;
+	private LocalDate dateArrivee = LocalDate.of(0000, 01, 01);
+	private LocalDate dateDepart = LocalDate.of(0000, 01, 01);
+	private int id;
 	
 	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
 	{
@@ -29,6 +30,13 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.password = password;
 		this.mail = mail;
 		this.ligue = ligue;
+		try {
+		this.id = gestionPersonnel.insert(this);
+		}
+		catch(SauvegardeImpossible e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -49,7 +57,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Retourne vrai ssi l'employé est le root.
 	 * @return vrai ssi l'employé est le root.
 	 */
-	
+	public int getID()
+	{
+		return id;
+	}
 	public boolean estRoot()
 	{
 		return gestionPersonnel.getRoot() == this;
