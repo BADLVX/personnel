@@ -126,21 +126,26 @@ public class JDBC implements Passerelle
 	}	
 	
 	@Override
-	public int update(Employe employe) throws SauvegardeImpossible 
+	public void update(Employe employe) throws SauvegardeImpossible 
 	{
 		try 
 		{
+			System.out.println("Test pour UPdate.");
+			Date dateArriveeSQL = Date.valueOf(employe.getDateArrivee());
+			Date dateDepartSQL = Date.valueOf(employe.getDateDepart());
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("update utilisateur set Nom = ?, Prenom = ?, Mdp = ?, Date_Arrivee = ?, Date_Depart = ?, Mail = ?  where User_Id = ? ", Statement.RETURN_GENERATED_KEYS);
+			instruction = connection.prepareStatement("update employe set Nom = ?, Prenom = ?, Mdp = ?, Date_Arrivee = ?, Date_Depart = ?, Mail = ?  where User_Id = ? ", Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1, employe.getNom()); 
 			instruction.setString(2, employe.getPrenom());
 			instruction.setString(3, employe.getPassword());
-			instruction.setString(4, employe.getDateArrivee().toString());
-			instruction.setString(5, employe.getDateDepart().toString());
+			instruction.setDate(4, dateArriveeSQL);
+			instruction.setDate(5, dateDepartSQL);
+			instruction.setString(6,  employe.getMail());
+			instruction.setInt(7, employe.getID());
 			instruction.executeUpdate();
-			ResultSet id = instruction.getGeneratedKeys();
-			id.next();
-			return id.getInt(1);
+			//ResultSet id = instruction.getGeneratedKeys();
+			//id.next();
+			//return id.getInt(1);
 		} 
 		catch (SQLException exception) 
 		{
