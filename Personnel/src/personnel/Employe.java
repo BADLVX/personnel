@@ -61,6 +61,12 @@ public class Employe implements Serializable, Comparable<Employe>
 	{
 		return id;
 	}
+	
+	public GestionPersonnel getGestionPersonnel()
+	{
+		return gestionPersonnel;
+	}
+	
 	public boolean estRoot()
 	{
 		return gestionPersonnel.getRoot() == this;
@@ -84,6 +90,13 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setNom(String nom)
 	{
 		this.nom = nom;
+		try {
+			gestionPersonnel.update(this);
+		}
+		catch (SauvegardeImpossible e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**
