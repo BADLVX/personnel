@@ -117,6 +117,13 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setPrenom(String prenom)
 	{
 		this.prenom = prenom;
+		try {
+			gestionPersonnel.update(this);
+		}
+		catch (SauvegardeImpossible e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -139,6 +146,13 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setMail(String mail)
 	{
 		this.mail = mail;
+		try {
+			gestionPersonnel.update(this);
+		}
+		catch (SauvegardeImpossible e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -164,6 +178,13 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setPassword(String password)
 	{
 		this.password= password;
+		try {
+			gestionPersonnel.update(this);
+		}
+		catch (SauvegardeImpossible e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -210,7 +231,14 @@ public class Employe implements Serializable, Comparable<Employe>
     		{
     			throw new ExceptionArrivee();
     		}
-    		this.dateArrivee = dateArrivee;  
+    		this.dateArrivee = dateArrivee;
+    		try {
+    			gestionPersonnel.update(this);
+    		}
+    		catch (SauvegardeImpossible e)
+    		{
+    			e.printStackTrace();
+    		}
     		
     }
     
@@ -221,6 +249,13 @@ public class Employe implements Serializable, Comparable<Employe>
 			throw new ExceptionDepart();
 		}
         this.dateDepart = dateDepart;
+        try {
+			gestionPersonnel.update(this);
+		}
+		catch (SauvegardeImpossible e)
+		{
+			e.printStackTrace();
+		}
     }
     
     
