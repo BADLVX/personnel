@@ -153,5 +153,40 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
+	
+	@Override
+	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible 
+	{
+		try 
+		{
+			System.out.println("Ca marche");
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("delete from ligue where Id_Ligue = ?", Statement.RETURN_GENERATED_KEYS);
+			instruction.setInt(1, ligue.getID());	
+			instruction.executeUpdate();
+		} 
+		catch (SQLException exception) 
+		{
+			exception.printStackTrace();
+			throw new SauvegardeImpossible(exception);
+		}		
+	}
+	@Override
+	public void deleteEmploye(Employe employe) throws SauvegardeImpossible 
+	{
+		try 
+		{
+			System.out.println("Ca marche taggle");
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("delete from employe where User_Id = ?", Statement.RETURN_GENERATED_KEYS);
+			instruction.setInt(1, employe.getID());	
+			instruction.executeUpdate();
+		} 
+		catch (SQLException exception) 
+		{
+			exception.printStackTrace();
+			throw new SauvegardeImpossible(exception);
+		}		
+	}
 }
 	

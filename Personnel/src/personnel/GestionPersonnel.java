@@ -116,6 +116,17 @@ public class GestionPersonnel implements Serializable
 	}
 	
 	
+	void deleteLigue(Ligue ligue) throws SauvegardeImpossible
+	{
+		passerelle.deleteLigue(ligue);
+	}
+	
+	void deleteEmploye(Employe employe) throws SauvegardeImpossible
+	{
+		passerelle.deleteEmploye(employe);
+	}
+	
+	
 	/**
 	 * Retourne le root (super-utilisateur).
 	 * @return le root.

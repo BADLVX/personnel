@@ -132,6 +132,12 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	public void remove()
 	{
 		gestionPersonnel.remove(this);
+		try {
+			gestionPersonnel.deleteLigue(this);
+		}
+		catch(SauvegardeImpossible e) {
+			e.printStackTrace();
+		}
 	}
 	
 
