@@ -120,14 +120,14 @@ public class GestionPersonnel implements Serializable
 		passerelle.update(ligue);
 	}
 	
-	void deleteLigue(Ligue ligue) throws SauvegardeImpossible
+	void delete(Ligue ligue) throws SauvegardeImpossible
 	{
-		passerelle.deleteLigue(ligue);
+		passerelle.delete(ligue);
 	}
 	
-	void deleteEmploye(Employe employe) throws SauvegardeImpossible
+	void delete(Employe employe) throws SauvegardeImpossible
 	{
-		passerelle.deleteEmploye(employe);
+		passerelle.delete(employe);
 	}
 	 
 	/**

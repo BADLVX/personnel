@@ -79,6 +79,7 @@ public class JDBC implements Passerelle
 	{
 		try 
 		{
+			System.out.println("Test Pour Insert Ligue");
 			PreparedStatement instruction;
 			instruction = connection.prepareStatement("insert into ligue (Nom_Ligue) values(?)", Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1, ligue.getNom());		
@@ -98,7 +99,7 @@ public class JDBC implements Passerelle
 	public int insert(Employe employe) throws SauvegardeImpossible 
 	{
 		try {
-			System.out.println("HELLLO STP FONCTIONNE");
+			System.out.println("HELLLO STP FONCTIONNE, TEst Insert Employe");
 			Date dateArriveeSQL = Date.valueOf(employe.getDateArrivee());
 			Date dateDepartSQL = Date.valueOf(employe.getDateDepart());
 			PreparedStatement instruction;
@@ -173,11 +174,11 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible 
+	public void delete(Ligue ligue) throws SauvegardeImpossible 
 	{
 		try 
 		{
-			System.out.println("Ca marche");
+			System.out.println("Test pour Delete une ligue !");
 			PreparedStatement instruction;
 			instruction = connection.prepareStatement("delete from ligue where Id_Ligue = ?", Statement.RETURN_GENERATED_KEYS);
 			instruction.setInt(1, ligue.getID());	
@@ -190,11 +191,11 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public void deleteEmploye(Employe employe) throws SauvegardeImpossible 
+	public void delete(Employe employe) throws SauvegardeImpossible 
 	{
 		try 
 		{
-			System.out.println("Ca marche taggle");
+			System.out.println("Test pour delete un Employe !");
 			PreparedStatement instruction;
 			instruction = connection.prepareStatement("delete from employe where User_Id = ?", Statement.RETURN_GENERATED_KEYS);
 			instruction.setInt(1, employe.getID());	

@@ -141,7 +141,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		gestionPersonnel.remove(this);
 		try {
-			gestionPersonnel.deleteLigue(this);
+			gestionPersonnel.delete(this);
 		}
 		catch(SauvegardeImpossible e) {
 			e.printStackTrace();
