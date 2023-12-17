@@ -130,7 +130,7 @@ public class JDBC implements Passerelle
 	{
 		try 
 		{
-			System.out.println("Test pour UPdate.");
+			System.out.println("Test pour Employe UPdate.");
 			Date dateArriveeSQL = Date.valueOf(employe.getDateArrivee());
 			Date dateDepartSQL = Date.valueOf(employe.getDateDepart());
 			PreparedStatement instruction;
@@ -154,6 +154,24 @@ public class JDBC implements Passerelle
 		}		
 	}
 	
+	public void update(Ligue ligue) throws SauvegardeImpossible 
+	{
+		try 
+		{
+			System.out.println("Test pour Ligue UPdate.");
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("update ligue set Nom_Ligue = ?  where Id_Ligue = ? ", Statement.RETURN_GENERATED_KEYS);
+			instruction.setString(1, ligue.getNom()); 
+			instruction.setInt(2, ligue.getID());
+			instruction.executeUpdate();
+		} 
+		catch (SQLException exception) 
+		{
+			exception.printStackTrace();
+			throw new SauvegardeImpossible(exception);
+		}		
+	}
+	
 	@Override
 	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible 
 	{
@@ -163,14 +181,14 @@ public class JDBC implements Passerelle
 			PreparedStatement instruction;
 			instruction = connection.prepareStatement("delete from ligue where Id_Ligue = ?", Statement.RETURN_GENERATED_KEYS);
 			instruction.setInt(1, ligue.getID());	
-			instruction.executeUpdate();
-		} 
+		}
 		catch (SQLException exception) 
 		{
 			exception.printStackTrace();
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
+	
 	@Override
 	public void deleteEmploye(Employe employe) throws SauvegardeImpossible 
 	{
@@ -186,7 +204,9 @@ public class JDBC implements Passerelle
 		{
 			exception.printStackTrace();
 			throw new SauvegardeImpossible(exception);
-		}		
+
+		}
 	}
+	
 }
 	

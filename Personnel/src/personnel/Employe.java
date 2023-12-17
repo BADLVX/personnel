@@ -213,11 +213,12 @@ public class Employe implements Serializable, Comparable<Employe>
 		}
 		else
 			throw new ImpossibleDeSupprimerRoot();
-		
-		try {
+		try 
+		{
 			gestionPersonnel.deleteEmploye(this);
 		}
-		catch(SauvegardeImpossible e) {
+		catch(SauvegardeImpossible e) 
+		{
 			e.printStackTrace();
 		}
 	}
