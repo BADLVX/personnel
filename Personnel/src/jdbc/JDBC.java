@@ -181,7 +181,8 @@ public class JDBC implements Passerelle
 			System.out.println("Test pour Delete une ligue !");
 			PreparedStatement instruction;
 			instruction = connection.prepareStatement("delete from ligue where Id_Ligue = ?", Statement.RETURN_GENERATED_KEYS);
-			instruction.setInt(1, ligue.getID());	
+			instruction.setInt(1, ligue.getID());
+			instruction.executeUpdate();
 		}
 		catch (SQLException exception) 
 		{
